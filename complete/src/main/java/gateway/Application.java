@@ -27,18 +27,19 @@ public class Application {
 	public RouteLocator myRoutes(RouteLocatorBuilder builder, UriConfiguration uriConfiguration) {
 		String httpUri = uriConfiguration.getHttpbin();
 		return builder.routes()
-			.route(p -> p
-				.path("/get")
-				.filters(f -> f.addRequestHeader("Hello", "World"))
-				.uri(httpUri))
-			.route(p -> p
-				.host("*.hystrix.com")
-				.filters(f -> f
-					.hystrix(config -> config
-						.setName("mycmd")
-						.setFallbackUri("forward:/fallback")))
-				.uri(httpUri))
-			.build();
+				.route(p -> p.path("/get").filters(f -> f.addRequestHeader("Hello", "World")).uri(httpUri))
+				.route(p -> p.path("/headers").filters(f -> f.addRequestHeader("Hello", "World")).uri(httpUri))
+				.route(p -> p.path("/ip").filters(f -> f.addRequestHeader("Hello", "World")).uri(httpUri))
+				.route(p -> p.path("/user-agent").filters(f -> f.addRequestHeader("Hello", "World")).uri(httpUri))
+				.route(p -> p.path("/anything").filters(f -> f.addRequestHeader("Hello", "World")).uri(httpUri))
+				.route(p -> p.path("/uuid").filters(f -> f.addRequestHeader("Hello", "World")).uri(httpUri))
+				.route(p -> p.path("/stream/*").filters(f -> f.addRequestHeader("Hello", "World")).uri(httpUri))				
+				.route(p -> p.path("/github").filters(f -> f.rewritePath("/google", "/")).uri("https://github.com"))
+				.route(p -> p.path("/dzone").filters(f -> f.rewritePath("/google", "/")).uri("https://dzone.com"))
+				.route(p -> p.host("*.hystrix.com")
+						.filters(f -> f.hystrix(config -> config.setName("mycmd").setFallbackUri("forward:/fallback")))
+						.uri(httpUri))
+				.build();
 	}
 	// end::route-locator[]
 
@@ -53,7 +54,7 @@ public class Application {
 // tag::uri-configuration[]
 @ConfigurationProperties
 class UriConfiguration {
-	
+
 	private String httpbin = "http://httpbin.org:80";
 
 	public String getHttpbin() {
