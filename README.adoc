@@ -10,6 +10,8 @@
 :project_id: gs-gateway
 This guide walks you through how to use the Spring Cloud Gateway
 
+# I'm Using the "Complete" Directory
+
 == What you'll build
 
 You'll build a gateway using https://cloud.spring.io/spring-cloud-gateway/[Spring Cloud Gateway].
