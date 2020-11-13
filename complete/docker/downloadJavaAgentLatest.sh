@@ -18,6 +18,9 @@ FILE_PATH=$(curl https://download.appdynamics.com/download/downloadfilelatest/ |
 # Construct the full URL
 DOWNLOAD_PATH=$DOWNLOAD_PATH$FILE_PATH
 
+# Hard-coding to 20.7.0 for testing
+DOWNLOAD_PATH=https://download-files.appdynamics.com/download-file/sun-jvm/20.7.0.30639/AppServerAgent-20.7.0.30639.zip
+
 # Print URL to stdout
 echo "Downloading agent from: " $DOWNLOAD_PATH
 

@@ -12,6 +12,30 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// Imports from newer project (hoxton build)
+//import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import org.springframework.beans.factory.annotation.Value;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
+
+import org.springframework.http.MediaType;
+
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.server.RequestPredicates;
+import org.springframework.web.reactive.function.server.RouterFunction;
+import org.springframework.web.reactive.function.server.RouterFunctions;
+import org.springframework.web.reactive.function.server.ServerResponse;
+
 // tag::code[]
 @SpringBootApplication
 @EnableConfigurationProperties(UriConfiguration.class)
@@ -34,11 +58,13 @@ public class Application {
 				.route(p -> p.path("/anything").filters(f -> f.addRequestHeader("Hello", "World")).uri(httpUri))
 				.route(p -> p.path("/uuid").filters(f -> f.addRequestHeader("Hello", "World")).uri(httpUri))
 				.route(p -> p.path("/stream/*").filters(f -> f.addRequestHeader("Hello", "World")).uri(httpUri))				
-				.route(p -> p.path("/github").filters(f -> f.rewritePath("/google", "/")).uri("https://github.com"))
-				.route(p -> p.path("/dzone").filters(f -> f.rewritePath("/google", "/")).uri("https://dzone.com"))
+				.route(p -> p.path("/github").filters(f -> f.rewritePath("/github", "/")).uri("https://github.com"))
+				.route(p -> p.path("/dzone").filters(f -> f.rewritePath("/dzone", "/")).uri("https://dzone.com"))
+				.route(p -> p.path("/garagesale").filters(f -> f.rewritePath("/garagesale", "/")).uri("http://host.docker.internal:8080"))
 				.route(p -> p.host("*.hystrix.com")
 						.filters(f -> f.hystrix(config -> config.setName("mycmd").setFallbackUri("forward:/fallback")))
 						.uri(httpUri))
+				//.route(p -> p.path("/NettyRoutingFilter").filters(f -> f.)  // Add NettyRoutingFilter here to test!
 				.build();
 	}
 	// end::route-locator[]

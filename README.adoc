@@ -12,6 +12,19 @@ This guide walks you through how to use the Spring Cloud Gateway
 
 # I'm Using the "Complete" Directory
 
+# Routes
+
+### http://localhost:9999/get
+### http://localhost:9999/headers
+### http://localhost:9999/ip
+### http://localhost:9999/user-agent
+### http://localhost:9999/anything
+### http://localhost:9999/uuid
+### http://localhost:9999/stream/{x}
+### http://localhost:9999/github
+### http://localhost:9999/dzone
+
+
 == What you'll build
 
 You'll build a gateway using https://cloud.spring.io/spring-cloud-gateway/[Spring Cloud Gateway].

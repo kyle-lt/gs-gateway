@@ -16,6 +16,8 @@ import static org.assertj.core.api.Assertions.*;
  * @author Ryan Baxter
  */
 // tag::code[]
+
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
 		properties = {"httpbin=http://localhost:${wiremock.server.port}"})
@@ -54,4 +56,5 @@ public class ApplicationTest {
 				response -> assertThat(response.getResponseBody()).isEqualTo("fallback".getBytes()));
 	}
 }
+
 // end::code[]
