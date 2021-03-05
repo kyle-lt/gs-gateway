@@ -23,6 +23,7 @@ This guide walks you through how to use the Spring Cloud Gateway
 ### http://localhost:9999/stream/{x}
 ### http://localhost:9999/github
 ### http://localhost:9999/dzone
+### http://localhost:9999/garagesale
 
 
 == What you'll build

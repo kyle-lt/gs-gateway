@@ -29,7 +29,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
 import org.springframework.http.MediaType;
-
+import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -45,6 +45,11 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
+	
+	//@Bean
+	//public ServerCodecConfigurer serverCodecConfigurer() {
+	//   return ServerCodecConfigurer.create();
+	//}
 
 	// tag::route-locator[]
 	@Bean
