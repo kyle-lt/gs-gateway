@@ -1,6 +1,9 @@
 # Env Var File
 .env
 
+# jar
+*.jar
+
 # Operating System Files
 
 *.DS_Store
