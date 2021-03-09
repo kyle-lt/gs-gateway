@@ -1,3 +1,6 @@
+# Env Var File
+.env
+
 # Operating System Files
 
 *.DS_Store

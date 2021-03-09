@@ -6,6 +6,10 @@ RUN apt-get install -y curl jq unzip
 COPY downloadJavaAgentLatest.sh .
 RUN ./downloadJavaAgentLatest.sh
 
+# New Relic
+COPY downloadNRJavaAgentLatest.sh .
+RUN ./downloadNRJavaAgentLatest.sh
+
 RUN mkdir /app
 WORKDIR /app
 
@@ -30,7 +34,8 @@ ADD ./gs-gateway-0.1.0.jar .
 #WORKDIR ${APP_ROOT}
 
 # Add custom AppD logging spec
-ADD ./log4j.xml /opt/appdynamics/java/ver21.2.0.31849/conf/logging
+ADD ./log4j2.xml /opt/appdynamics/java/ver21.2.0.31849/conf/logging
+ADD ./app-agent-config.xml /opt/appdynamics/java/ver21.2.0.31849/conf/
 
 ENV JAVA_OPTS $JAVA_OPTS
 CMD java $JAVA_OPTS \
